@@ -8,10 +8,11 @@ using namespace pdftron;
 using namespace PDF;
 
 
-int main() {
+int main(int argc, char** argv) {
 	PDFNet::Initialize();
 	try {
-		PDFDoc doc("text_classification_algorithms.pdf");
+		string pdf_filename = argv[1];
+		PDFDoc doc(pdf_filename);
 		doc.InitSecurityHandler();
 
 		PageIterator itr;
