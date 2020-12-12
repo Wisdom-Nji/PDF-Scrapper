@@ -1,7 +1,6 @@
 #include <iostream>
 #include "PDFNetC64/Headers/PDF/PDFNet.h"
 #include "PDFNetC64/Headers/PDF/PDFDoc.h"
-#include "PDFNetC64/Headers/PDF/PDFDraw.h"
 #include "PDFNetC64/Headers/PDF/TextExtractor.h"
 
 using namespace std;
