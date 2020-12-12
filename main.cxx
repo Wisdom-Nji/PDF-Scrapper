@@ -24,9 +24,13 @@ int main() {
 		TextExtractor::Line line = txt.GetFirstLine();
 		TextExtractor::Word word;
 
+		UString text; 
+
 		for(; line.IsValid(); line=line.GetNextLine()) {
 			for(word=line.GetFirstWord(); word.IsValid(); word=word.GetNextWord()) {
-				cout << word.GetString() << endl;
+				// cout << word.GetString() << endl;
+				text.Assign(word.GetString(), word.GetStringLen());
+				cout << text << endl;
 			}
 		}
 	}
