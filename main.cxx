@@ -25,8 +25,6 @@ int main() {
 			cout << doc_content << endl << endl;
 		}
 
-		// cout << "Content: " << doc_content << endl;
-
 		// Extract words one by one
 		/*
 		TextExtractor::Line line = txt.GetFirstLine();
