@@ -20,7 +20,12 @@ int main() {
 		TextExtractor txt;
 		txt.Begin( page );
 
+
+		UString doc_content = txt.GetAsText();
+		cout << "Content: " << doc_content << endl;
+
 		// Extract words one by one
+		/*
 		TextExtractor::Line line = txt.GetFirstLine();
 		TextExtractor::Word word;
 
@@ -33,6 +38,7 @@ int main() {
 				cout << text << endl;
 			}
 		}
+		*/
 	}
 	catch( pdftron::Common::Exception& ex) {
 		cout << ex.GetMessage() << endl;
