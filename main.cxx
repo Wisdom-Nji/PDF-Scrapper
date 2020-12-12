@@ -15,14 +15,18 @@ int main() {
 		PDFDoc doc("text_classification_algorithms.pdf");
 		doc.InitSecurityHandler();
 
-		Page page = doc.GetPage(1);
+		PageIterator itr;
+		for( itr=doc.GetPageIterator(); itr.HasNext(); itr.Next()) {
+			Page page = itr.Current();
 
-		TextExtractor txt;
-		txt.Begin( page );
+			TextExtractor txt;
+			txt.Begin( page );
 
+			UString doc_content = txt.GetAsText();
+			cout << doc_content << endl << endl;
+		}
 
-		UString doc_content = txt.GetAsText();
-		cout << "Content: " << doc_content << endl;
+		// cout << "Content: " << doc_content << endl;
 
 		// Extract words one by one
 		/*
