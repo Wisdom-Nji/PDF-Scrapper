@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// TODO: add wps
 
 int main(int argc, char** argv ) {
 	string filename = argv[1];
