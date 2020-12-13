@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "../../libs/PDFNetC64/Headers/PDF/PDFNet.h"
 #include "../../libs/PDFNetC64/Headers/PDF/PDFDoc.h"
 #include "../../libs/PDFNetC64/Headers/PDF/TextExtractor.h"
