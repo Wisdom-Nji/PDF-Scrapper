@@ -18,10 +18,12 @@ void show_at_wpm( string input, short int wpm ) {
 	if( !input.empty())
 		words.push_back( input );
 
+	short int wps = wpm / 60;
+	cout << "\033[2J\033[1;1H";
 	for( auto i : words ) {
 		cout << i << endl;
-		short int wps = wpm / 60;
 		std::this_thread::sleep_for( std::chrono::milliseconds( 1000 / wps ));
+		cout << "\033[2J\033[1;1H";
 	}
 }
 
