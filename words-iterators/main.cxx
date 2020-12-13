@@ -20,7 +20,8 @@ void show_at_wpm( string input, short int wpm ) {
 
 	for( auto i : words ) {
 		cout << i << endl;
-		std::this_thread::sleep_for( std::chrono::milliseconds( 250 ));
+		short int wps = wpm / 60;
+		std::this_thread::sleep_for( std::chrono::milliseconds( 1000 / wps ));
 	}
 }
 
