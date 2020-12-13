@@ -1,8 +1,28 @@
 #include "../src/headers/pdf_scrapper.hpp"
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
-// TODO: add wps
+void show_at_wpm( string input, short int wpm ) {
+	vector<string> words;
+	
+	size_t space_loc = input.find(' ');
+	while( space_loc != string::npos ) {
+		string new_word = input.substr( 0, space_loc);
+		input.erase(0, space_loc+1);
+		
+		words.push_back( new_word );
+		space_loc = input.find(' ');
+	}
+	if( !input.empty())
+		words.push_back( input );
+
+	for( auto i : words ) {
+		cout << i << endl;
+		std::this_thread::sleep_for( std::chrono::milliseconds( 250 ));
+	}
+}
 
 int main(int argc, char** argv ) {
 	string filename = argv[1];
@@ -12,7 +32,9 @@ int main(int argc, char** argv ) {
 	auto pdf_content_collection = pdf_scrapper.str_get_content();
 
 	for( auto i : pdf_content_collection ) {
-		cout << i << endl;
+		// cout << i << endl;
+
+		show_at_wpm( i.ConvertToUtf8(), 240 );
 	}
 
 	return 0;
