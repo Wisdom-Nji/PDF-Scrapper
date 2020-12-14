@@ -46,7 +46,8 @@ string vec_to_string( char delimeter, vector<string> input ) {
 	string output_string = "";
 	for( auto i : input)
 		output_string += i + delimeter;
-	output_string.erase( output_string.size() -1, 1);
+	if( !output_string.empty())
+		output_string.erase( output_string.size() -1, 1);
 	return output_string;
 }
 
