@@ -56,19 +56,30 @@ void show_at_wpm( string input, short int wpm, WINDOW* window ) {
 	vector<string> words = split_by_char( '\n', input );
 	input = vec_to_string( ' ', words);
 	words = split_by_char( ' ',  input);
+	string previous_entry = "";
 	for( auto i : words ) {
 		// cout << i << endl;
 		// i = remove_char( '\n', i);
-		// mvwprintw(window, 10, 10, i.c_str()); // TODO: Get windows size dynamically
-		wmove( window, 10, 10 );
+		wmove( window, 10, 10 ); // getyx(win, y, x) then do the maths
+		/* 
+		TODO: will need a more dynamic function to remove the strings here
+		for( int j=0;j<previous_entry.size();++j ) {
+			wdelch( window );
+			waddch( window, ' ');
+			// mvwdelch( window, 10, 10);
+			//mvwaddch( window, 10, 10+j, ' ');
+		}
+		*/
+
+		wclrtoeol( window ); // Clears the lines
 		waddstr( window, i.c_str());
 		wattron( window, A_BOLD );
+		// wattron( window, A_STANDOUT );
 		// wprintw("%s\n", i.c_str());
 		wrefresh( window );
 		std::this_thread::sleep_for( std::chrono::milliseconds( 1000 / wps ));
-		// cout << "\033[2J\033[1;1H";
-		// wprintw("\033[2J\033[1;1H");
-
+		wstandend(window);
+		previous_entry = i;
 	}
 }
 
