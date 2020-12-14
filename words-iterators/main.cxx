@@ -59,7 +59,7 @@ void show_at_wpm( string input, short int wpm, WINDOW* window ) {
 	for( auto i : words ) {
 		// cout << i << endl;
 		i = remove_char( '\n', i);
-		mvwprintw(window, 0, 0, i.c_str());
+		mvwprintw(window, 10, 10, i.c_str()); // TODO: Get windows size dynamically
 		// wprintw("%s\n", i.c_str());
 		wrefresh( window );
 		std::this_thread::sleep_for( std::chrono::milliseconds( 1000 / wps ));
