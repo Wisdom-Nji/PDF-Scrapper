@@ -24,7 +24,7 @@ vector<string> split_by_char( char _char, string input ) {
 		input.erase(0, space_loc+1);
 		
 		words.push_back( new_word );
-		space_loc = input.find(' ');
+		space_loc = input.find(_char);
 	}
 	if( !input.empty())
 		words.push_back( input );
@@ -58,8 +58,11 @@ void show_at_wpm( string input, short int wpm, WINDOW* window ) {
 	words = split_by_char( ' ',  input);
 	for( auto i : words ) {
 		// cout << i << endl;
-		i = remove_char( '\n', i);
-		mvwprintw(window, 10, 10, i.c_str()); // TODO: Get windows size dynamically
+		// i = remove_char( '\n', i);
+		// mvwprintw(window, 10, 10, i.c_str()); // TODO: Get windows size dynamically
+		wmove( window, 10, 10 );
+		waddstr( window, i.c_str());
+		wattron( window, A_BOLD );
 		// wprintw("%s\n", i.c_str());
 		wrefresh( window );
 		std::this_thread::sleep_for( std::chrono::milliseconds( 1000 / wps ));
