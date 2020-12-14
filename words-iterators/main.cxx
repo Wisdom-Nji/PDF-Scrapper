@@ -52,9 +52,14 @@ string vec_to_string( char delimeter, vector<string> input ) {
 }
 
 void show_at_wpm( string input, short int wpm, WINDOW* window ) {
+	// TODO: when words are longer than the box, they turn
+	// to fuck shit up, try dynamically allocating more space
+	// to the dimensions of the box based on how thngs are at
+	// the current
 	short int wps = wpm / 60;
-	cout << "\033[2J\033[1;1H";
 	vector<string> words = split_by_char( '\n', input );
+	input = vec_to_string( ' ', words);
+	words = split_by_char( '\r', input );
 	input = vec_to_string( ' ', words);
 	words = split_by_char( ' ',  input);
 	string previous_entry = "";
