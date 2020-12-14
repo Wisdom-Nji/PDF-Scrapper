@@ -16,10 +16,9 @@ WINDOW *create_newwin( int height, int width, int start_y, int start_x) {
 	return local_win;
 }
 
-void show_at_wpm( string input, short int wpm, WINDOW* window ) {
+vector<string> split_by_char( char _char, string input ) {
 	vector<string> words;
-	
-	size_t space_loc = input.find(' ');
+	size_t space_loc = input.find(_char);
 	while( space_loc != string::npos ) {
 		string new_word = input.substr( 0, space_loc);
 		input.erase(0, space_loc+1);
@@ -29,11 +28,37 @@ void show_at_wpm( string input, short int wpm, WINDOW* window ) {
 	}
 	if( !input.empty())
 		words.push_back( input );
+	
+	return words;
+}
 
+
+string remove_char( char _char, string input) {
+	size_t space_loc = input.find(_char);
+	while( space_loc != string::npos ) {
+		input.erase(space_loc, 1);
+		space_loc = input.find(_char);
+	}
+	return input;
+}
+
+string vec_to_string( char delimeter, vector<string> input ) {
+	string output_string = "";
+	for( auto i : input)
+		output_string += i + delimeter;
+	output_string.erase( output_string.size() -1, 1);
+	return output_string;
+}
+
+void show_at_wpm( string input, short int wpm, WINDOW* window ) {
 	short int wps = wpm / 60;
 	cout << "\033[2J\033[1;1H";
+	vector<string> words = split_by_char( '\n', input );
+	input = vec_to_string( ' ', words);
+	words = split_by_char( ' ',  input);
 	for( auto i : words ) {
 		// cout << i << endl;
+		i = remove_char( '\n', i);
 		mvwprintw(window, 0, 0, i.c_str());
 		// wprintw("%s\n", i.c_str());
 		wrefresh( window );
