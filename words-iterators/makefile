@@ -1,4 +1,4 @@
-LIBS=-L../libs/PDFNetC64/Lib -lPDFNetC -lstdc++ -lpthread -lm -lc
+LIBS=-L../libs/PDFNetC64/Lib -lPDFNetC -lstdc++ -lpthread -lm -lc -lncurses
 INCLUDES=-I../libs/PDFNetC64/Headers
 LDFLAGS=-Wl,-rpath,../libs/PDFNetC64/Lib -Wl,-rpath,$$ORIGIN
 #LDFLAGS=
