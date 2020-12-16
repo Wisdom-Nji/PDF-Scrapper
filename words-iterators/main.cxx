@@ -89,6 +89,11 @@ void show_at_wpm( string input, short int wpm, WINDOW* window ) {
 	}
 }
 
+void show( WINDOW *window, string input ) {
+	waddstr( window, input.c_str());
+	wrefresh( window );
+}
+
 int main(int argc, char** argv ) {
 	string filename = argv[1];
 
@@ -98,12 +103,15 @@ int main(int argc, char** argv ) {
 
 	initscr();
 	
-	int height = LINES / 2, width = COLS / 2, start_y = 0, start_x = 0;
+	int height = LINES / 2, width = COLS, start_y = 0, start_x = 0;
 	refresh();
 	WINDOW *w_wpm = create_newwin( height, width, start_y, start_x);
+	WINDOW *w_allcontent = create_newwin( height, width, start_y + height, start_x);
+	
 	for( auto i : pdf_content_collection ) {
 		// cout << i << endl;
 
+		show( w_allcontent, i.ConvertToUtf8());
 		show_at_wpm( i.ConvertToUtf8(), 240, w_wpm );
 	}
 	endwin();
