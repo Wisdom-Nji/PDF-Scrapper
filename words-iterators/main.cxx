@@ -102,13 +102,9 @@ void show( WINDOW *window, string input ) {
 
 	int height = 0;
 	int width = 0;
-	getyx( window, height, width );
 
-	WINDOW *innerbox = subwin( window, height -3, width -3, 4, 4);
-	waddstr( innerbox, input.c_str());
-
-	touchwin( window );
-	wrefresh( innerbox );
+	waddstr( window, input.c_str());
+	wrefresh( window );
 }
 
 int main(int argc, char** argv ) {
