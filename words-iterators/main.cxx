@@ -89,9 +89,26 @@ void show_at_wpm( string input, short int wpm, WINDOW* window ) {
 	}
 }
 
+string clean( string input ) {
+	input = remove_char( '\n', input );
+	input = remove_char( '\r', input );
+
+	return input;
+}
+
 void show( WINDOW *window, string input ) {
-	waddstr( window, input.c_str());
-	wrefresh( window );
+	wmove( window, 1, 1 );
+	input = clean( input );
+
+	int height = 0;
+	int width = 0;
+	getyx( window, height, width );
+
+	WINDOW *innerbox = subwin( window, height -3, width -3, 4, 4);
+	waddstr( innerbox, input.c_str());
+
+	touchwin( window );
+	wrefresh( innerbox );
 }
 
 int main(int argc, char** argv ) {
